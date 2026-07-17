@@ -27,7 +27,7 @@ fn session_runtime_current_actor_options_read_initial_action_and_target() {
     assert!(!options.current_actor_defeated);
     assert!(options.available);
     assert_eq!(options.unavailable_reason, None);
-    assert_eq!(options.actions.len(), 3);
+    assert_eq!(options.actions.len(), 4);
     assert_eq!(options.actions[0].action_id, "hexing_bolt");
     assert_eq!(options.actions[0].ability_id, "ability.hexing-bolt");
     assert_eq!(options.actions[0].action_name, "Hexing Bolt");
@@ -41,6 +41,11 @@ fn session_runtime_current_actor_options_read_initial_action_and_target() {
     assert_eq!(options.actions[0].target_options[0].target_name, "Raider");
     assert_eq!(options.actions[0].target_options[0].current_hit_points, 18);
     assert_eq!(options.actions[0].target_options[0].max_hit_points, 18);
+    let authored = &options.actions[3];
+    assert_eq!(authored.action_id, "action.authored-reaction");
+    assert_eq!(authored.ability_id, "ability.authored-reaction");
+    assert_eq!(authored.target_options.len(), 1);
+    assert_eq!(authored.target_options[0].target_id, "entity-raider");
 }
 
 #[test]
@@ -574,7 +579,7 @@ fn session_runtime_current_actor_options_snapshot_readback_uses_current_state() 
         snapshot.current_actor_options.current_actor_id,
         Some("entity-adept".to_string())
     );
-    assert_eq!(snapshot.current_actor_options.actions.len(), 3);
+    assert_eq!(snapshot.current_actor_options.actions.len(), 4);
     assert_eq!(
         snapshot.current_actor_options.actions[0].target_options[0].target_id,
         "entity-raider"
@@ -649,7 +654,7 @@ fn session_runtime_current_actor_options_filter_defeated_visible_targets() {
     assert!(!options.current_actor_defeated);
     assert!(options.available);
     assert_eq!(options.unavailable_reason, None);
-    assert_eq!(options.actions.len(), 3);
+    assert_eq!(options.actions.len(), 4);
     assert_eq!(options.actions[0].action_id, "hexing_bolt");
     assert!(options.actions[0].target_options.is_empty());
     assert!(!options.actions[1].destination_options.is_empty());
@@ -671,7 +676,7 @@ fn session_runtime_command_candidates_read_initial_current_actor_intents() {
     );
     assert!(!candidates.current_actor_defeated);
     assert_eq!(candidates.unavailable_reason, None);
-    assert_eq!(candidates.candidates.len(), 2);
+    assert_eq!(candidates.candidates.len(), 3);
 
     let candidate = &candidates.candidates[0];
     assert_eq!(
@@ -702,6 +707,11 @@ fn session_runtime_command_candidates_read_initial_current_actor_intents() {
         candidate.reason,
         "Command is admissible before roll resolution."
     );
+    assert_eq!(
+        candidates.candidates[2].action_id,
+        "action.authored-reaction"
+    );
+    assert_eq!(candidates.candidates[2].target_id, "entity-raider");
 }
 
 #[test]
@@ -907,7 +917,7 @@ fn session_runtime_candidate_selection_omits_illegal_self_target() {
     let candidates = session.current_actor_command_candidates();
 
     assert!(candidates.available);
-    assert_eq!(candidates.candidates.len(), 1);
+    assert_eq!(candidates.candidates.len(), 2);
     assert_eq!(
         candidates.candidates[0].action_id,
         "basic-attack.entity-adept"
@@ -1005,8 +1015,8 @@ fn session_runtime_auto_candidate_plan_selects_first_accepted_candidate_read_onl
     );
     assert_eq!(plan.decision_kind.code(), "accepted");
     assert_eq!(plan.current_actor_id, Some("entity-adept".to_string()));
-    assert_eq!(plan.candidate_count, 2);
-    assert_eq!(plan.accepted_candidate_count, 2);
+    assert_eq!(plan.candidate_count, 3);
+    assert_eq!(plan.accepted_candidate_count, 3);
     assert_eq!(plan.selected_action_id, Some("hexing_bolt".to_string()));
     assert_eq!(plan.selected_target_id, Some("entity-raider".to_string()));
     assert_eq!(plan.unavailable_reason, None);
@@ -1474,8 +1484,8 @@ fn session_runtime_automatic_policy_is_deterministic_and_rejects_unsupported_inp
             vec![17, 5],
         ));
     let evidence = &multi_execution.plan.policy_decision;
-    assert_eq!(evidence.candidate_count, 3);
-    assert_eq!(evidence.accepted_candidate_count, 3);
+    assert_eq!(evidence.candidate_count, 4);
+    assert_eq!(evidence.accepted_candidate_count, 4);
     assert_eq!(evidence.selected_candidate_index, Some(0));
     assert_eq!(
         evidence
@@ -1483,7 +1493,12 @@ fn session_runtime_automatic_policy_is_deterministic_and_rejects_unsupported_inp
             .iter()
             .map(|candidate| candidate.action_id.as_str())
             .collect::<Vec<_>>(),
-        vec!["hexing_bolt", "basic-attack.entity-adept", "second_bolt",]
+        vec![
+            "hexing_bolt",
+            "basic-attack.entity-adept",
+            "second_bolt",
+            "action.authored-reaction",
+        ]
     );
     assert_eq!(
         multi_execution

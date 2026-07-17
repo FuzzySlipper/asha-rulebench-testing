@@ -749,7 +749,7 @@ checksum = "4e27ee8bb91ca0adcf0ecb116293afa12d393f9c2b9b9cd54d33e8078fe19839"
 [[package]]
 name = "rpg-compiler"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ea3e3803d4736268f2a10996a34bc5b8dfefcffc#ea3e3803d4736268f2a10996a34bc5b8dfefcffc"
+source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ef463d2d0ea3f708f08605c0e9df42b385645397#ef463d2d0ea3f708f08605c0e9df42b385645397"
 dependencies = [
  "rpg-core",
  "rpg-ir",
@@ -759,12 +759,12 @@ dependencies = [
 [[package]]
 name = "rpg-core"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ea3e3803d4736268f2a10996a34bc5b8dfefcffc#ea3e3803d4736268f2a10996a34bc5b8dfefcffc"
+source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ef463d2d0ea3f708f08605c0e9df42b385645397#ef463d2d0ea3f708f08605c0e9df42b385645397"
 
 [[package]]
 name = "rpg-ir"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ea3e3803d4736268f2a10996a34bc5b8dfefcffc#ea3e3803d4736268f2a10996a34bc5b8dfefcffc"
+source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ef463d2d0ea3f708f08605c0e9df42b385645397#ef463d2d0ea3f708f08605c0e9df42b385645397"
 dependencies = [
  "rpg-core",
  "serde",
@@ -774,7 +774,7 @@ dependencies = [
 [[package]]
 name = "rpg-runtime"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ea3e3803d4736268f2a10996a34bc5b8dfefcffc#ea3e3803d4736268f2a10996a34bc5b8dfefcffc"
+source = "git+https://github.com/FuzzySlipper/asha-rpg.git?rev=ef463d2d0ea3f708f08605c0e9df42b385645397#ef463d2d0ea3f708f08605c0e9df42b385645397"
 dependencies = [
  "asha-gameplay-module-sdk",
  "asha-runtime-session-composition",
@@ -934,7 +934,7 @@ dependencies = [
 [[package]]
 name = "rulebench-bridge"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=8f12dfb51542c0b61d257f6ce8d34b3573ad1019#8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=d6312a85563a8224b04e1ee149f977b7ae5e9ff4#d6312a85563a8224b04e1ee149f977b7ae5e9ff4"
 dependencies = [
  "rpg-core",
  "rpg-ir",
@@ -947,7 +947,7 @@ dependencies = [
 [[package]]
 name = "rulebench-combat"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=8f12dfb51542c0b61d257f6ce8d34b3573ad1019#8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=d6312a85563a8224b04e1ee149f977b7ae5e9ff4#d6312a85563a8224b04e1ee149f977b7ae5e9ff4"
 dependencies = [
  "rpg-core",
  "rpg-ir",
@@ -958,7 +958,7 @@ dependencies = [
 [[package]]
 name = "rulebench-content"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=8f12dfb51542c0b61d257f6ce8d34b3573ad1019#8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=d6312a85563a8224b04e1ee149f977b7ae5e9ff4#d6312a85563a8224b04e1ee149f977b7ae5e9ff4"
 dependencies = [
  "rpg-compiler",
  "rpg-core",
@@ -970,7 +970,7 @@ dependencies = [
 [[package]]
 name = "rulebench-process-host"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=8f12dfb51542c0b61d257f6ce8d34b3573ad1019#8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=d6312a85563a8224b04e1ee149f977b7ae5e9ff4#d6312a85563a8224b04e1ee149f977b7ae5e9ff4"
 dependencies = [
  "rulebench-bridge",
  "rulebench-product-content",
@@ -982,7 +982,7 @@ dependencies = [
 [[package]]
 name = "rulebench-product-content"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=8f12dfb51542c0b61d257f6ce8d34b3573ad1019#8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=d6312a85563a8224b04e1ee149f977b7ae5e9ff4#d6312a85563a8224b04e1ee149f977b7ae5e9ff4"
 dependencies = [
  "rpg-core",
  "rpg-ir",
@@ -1011,7 +1011,7 @@ dependencies = [
 [[package]]
 name = "rulebench-protocol"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=8f12dfb51542c0b61d257f6ce8d34b3573ad1019#8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=d6312a85563a8224b04e1ee149f977b7ae5e9ff4#d6312a85563a8224b04e1ee149f977b7ae5e9ff4"
 dependencies = [
  "rpg-core",
  "rpg-ir",
@@ -1024,7 +1024,7 @@ dependencies = [
 [[package]]
 name = "rulebench-replay"
 version = "0.1.0"
-source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=8f12dfb51542c0b61d257f6ce8d34b3573ad1019#8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+source = "git+https://github.com/FuzzySlipper/asha-rulebench.git?rev=d6312a85563a8224b04e1ee149f977b7ae5e9ff4#d6312a85563a8224b04e1ee149f977b7ae5e9ff4"
 dependencies = [
  "rpg-core",
  "rulebench-combat",

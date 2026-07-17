@@ -1,5 +1,5 @@
 use rulebench_combat::{
-    fingerprint_projected_state, resolve_use_action, AttackOutcome, CombatSessionIntentCommandSpec,
+    fingerprint_projected_state, preview_use_action, AttackOutcome, CombatSessionIntentCommandSpec,
     CombatSessionState, ContestedCheckOutcome, DomainEvent, RulebenchReceipt, RulebenchRejection,
     SavingThrowOutcome,
 };
@@ -112,7 +112,7 @@ fn execute_catalog_case(case: &ScenarioCatalogCase) -> RulebenchReceipt {
         .find(|action| action.id == case.intent.action_id)
         .is_some_and(|action| action.movement.is_some());
     if !is_movement {
-        return resolve_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
+        return preview_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
     }
     let mut session = CombatSessionState::new(
         format!("regression-{}", case.summary.id),
@@ -328,7 +328,7 @@ mod tests {
     fn runner_reports_path_addressed_first_difference_and_empty_selection() {
         let mut cases = crate::aggregated_scenario_catalog_cases();
         let case = cases.remove(0);
-        let expected = resolve_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
+        let expected = preview_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
         let mut actual = expected.clone();
         actual.events.clear();
         assert_eq!(

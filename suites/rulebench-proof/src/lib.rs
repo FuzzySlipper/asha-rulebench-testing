@@ -27,6 +27,7 @@ mod tests;
 pub(crate) mod test_support {
     pub(crate) use rpg_core::*;
     pub(crate) use rpg_ir::*;
+    pub(crate) use rulebench_combat::preview_use_action as resolve_use_action;
     pub(crate) use rulebench_combat::*;
     pub(crate) use rulebench_product_content::*;
     pub(crate) use rulebench_replay::*;

@@ -4,7 +4,7 @@ use rpg_ir::{
     EffectOperationId, HitEffectOperation, TargetKind, TargetSelection, TargetingOperationId,
 };
 use rulebench_combat::{
-    fingerprint_projected_state, resolve_use_action, CombatSessionAutomaticRunReadout,
+    fingerprint_projected_state, preview_use_action, CombatSessionAutomaticRunReadout,
     CombatSessionAutomaticRunSpec, CombatSessionCreateRequest, CombatSessionIntentCommandSpec,
     CombatSessionState, DomainEvent, RulebenchReceipt, RulebenchRejection,
 };
@@ -355,7 +355,7 @@ fn execute_case_receipt(case: &ScenarioCatalogCase) -> RulebenchReceipt {
         .find(|action| action.id == case.intent.action_id)
         .is_some_and(|action| action.movement.is_some());
     if !is_movement {
-        return resolve_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
+        return preview_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
     }
     let mut session = CombatSessionState::new(
         format!("conformance-{}", case.summary.id),
@@ -555,7 +555,7 @@ fn execute_rejection_probes(
         return (Vec::new(), true);
     }
     let mut codes = Vec::new();
-    let invalid = resolve_use_action(
+    let invalid = preview_use_action(
         &case.scenario,
         UseActionIntent::new(
             &case.intent.actor_id,
@@ -579,7 +579,7 @@ fn execute_rejection_probes(
     {
         target.hit_points.current = 0;
     }
-    let defeated = resolve_use_action(&defeated_scenario, case.intent.clone(), &case.roll_stream);
+    let defeated = preview_use_action(&defeated_scenario, case.intent.clone(), &case.roll_stream);
     codes.push(
         defeated
             .rejection
@@ -600,7 +600,7 @@ fn execute_rejection_probes(
         .iter()
         .any(|identity| identity.id == "targeting.multipleCombatants")
     {
-        let duplicate = resolve_use_action(
+        let duplicate = preview_use_action(
             &case.scenario,
             UseActionIntent::for_targets(
                 &case.intent.actor_id,
@@ -627,7 +627,7 @@ fn execute_rejection_probes(
             .expect("conformance action exists")
             .targeting
             .maximum_range = 0;
-        let out_of_range = resolve_use_action(
+        let out_of_range = preview_use_action(
             &out_of_range_scenario,
             case.intent.clone(),
             &case.roll_stream,
@@ -642,7 +642,7 @@ fn execute_rejection_probes(
         passed &= out_of_range.rejection == Some(RulebenchRejection::TargetOutOfRange)
             && out_of_range.events.is_empty();
 
-        let accepted = resolve_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
+        let accepted = preview_use_action(&case.scenario, case.intent.clone(), &case.roll_stream);
         if let Some(destination) = accepted
             .target_results
             .iter()
@@ -659,7 +659,7 @@ fn execute_rejection_probes(
             let initial = rulebench_combat::CombatState::from_scenario(&blocked_scenario)
                 .project("rollback-initial");
             let blocked =
-                resolve_use_action(&blocked_scenario, case.intent.clone(), &case.roll_stream);
+                preview_use_action(&blocked_scenario, case.intent.clone(), &case.roll_stream);
             codes.push(
                 blocked
                     .rejection
