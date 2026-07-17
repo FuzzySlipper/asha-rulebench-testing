@@ -1,0 +1,17 @@
+[repository]
+role = "downstream-proof-consumer"
+may_consume = ["asha-rpg", "asha-rulebench"]
+must_not_be_consumed_by = ["asha-rpg", "asha-rulebench"]
+ordinary_product_per_change_gate = false
+runtime_dependency = false
+
+[inputs]
+require_full_git_sha = true
+require_public_surface = true
+allow_private_source_imports = false
+allow_unverified_sibling_head = false
+
+[evidence]
+allowed_states = ["passed", "failed", "not_run", "unavailable", "stale"]
+executed_current_required_for_passed = true
+computed_results_are_committed = false

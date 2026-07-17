@@ -1,0 +1,11 @@
+{
+  "name": "asha-rulebench-testing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Downstream exhaustive conformance and certification for Asha RPG and Rulebench.",
+  "scripts": {
+    "check:governance": "node scripts/check-governance.mjs",
+    "test": "npm run check:governance"
+  }
+}

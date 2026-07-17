@@ -1,0 +1,28 @@
+[surface."scripts/check-governance.mjs"]
+lane = "testing-governance"
+implementation_status = "active"
+
+[suite."suites/semantic"]
+lane = "semantic-conformance"
+implementation_status = "planned"
+consumes = ["asha-rpg", "asha-rulebench"]
+
+[suite."suites/replay"]
+lane = "replay-compatibility"
+implementation_status = "planned"
+consumes = ["asha-rpg", "asha-rulebench"]
+
+[suite."suites/compatibility"]
+lane = "cross-version-conformance"
+implementation_status = "planned"
+consumes = ["asha-rpg", "asha-rulebench"]
+
+[suite."suites/browser-live"]
+lane = "product-certification"
+implementation_status = "planned"
+consumes = ["asha-rulebench"]
+
+[suite."suites/certification"]
+lane = "certification"
+implementation_status = "planned"
+consumes = ["asha-rpg", "asha-rulebench"]
