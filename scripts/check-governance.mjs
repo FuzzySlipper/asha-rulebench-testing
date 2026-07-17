@@ -10,9 +10,24 @@ const requiredFiles = [
   'docs/certification-policy.md',
   'docs/failure-routing.md',
   'docs/non-claims.md',
+  'docs/extraction-evidence.md',
   'governance/architecture.md',
   'governance/ownership.toml',
   'governance/dependency-policy.toml',
+  'Cargo.toml',
+  'suites/rulebench-proof/Cargo.toml',
+  'suites/rulebench-proof/src/bin/check_compatibility.rs',
+  'suites/browser/capability-manifest.spec.ts',
+  'suites/browser/live-rust.exhaustive.spec.ts',
+  'suites/typescript-fixtures/src/ruleset-authoring.spec.ts',
+  'scripts/certify.mjs',
+  'scripts/check-generated.mjs',
+  '.github/workflows/certification.yml',
+  'baselines/pre-move-certification-14d239f.json',
+  'baselines/post-move-certification-8f12dfb.json',
+  'artifacts/generated/rust-capability-manifest.ts',
+  'artifacts/generated/rust-combat-session.ts',
+  'artifacts/generated/rust-scenario-catalog.ts',
 ];
 
 const failures = [];
@@ -43,11 +58,30 @@ for (const contract of [
 const packageJson = read('package.json');
 if (/file:\.\.|\/home\/dev/.test(packageJson)) failures.push('package manifest may not depend on sibling source paths');
 
+const cargoManifest = read('Cargo.toml');
+if (/\bpath\s*=|\/home\/dev|\.\.\/asha-/.test(cargoManifest)) {
+  failures.push('Cargo manifest may not depend on sibling or absolute source paths');
+}
+for (const [name, input] of Object.entries(revisions.products)) {
+  const expectedUrl = `https://github.com/${input.repository}.git`;
+  if (!cargoManifest.includes(expectedUrl)) {
+    failures.push(`Cargo manifest does not consume the canonical ${name} repository`);
+  }
+  if (!cargoManifest.includes(`rev = "${input.revision}"`)) {
+    failures.push(`Cargo manifest does not consume the exact ${name} revision`);
+  }
+}
+
+const ownership = read('governance/ownership.toml');
+if (ownership.includes('implementation_status = "planned"')) {
+  failures.push('active certification surfaces may not remain marked planned');
+}
+
 if (failures.length > 0) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log('asha-rulebench-testing governance check ok (bootstrap only; no certification claimed)');
+console.log('asha-rulebench-testing governance check ok (exact public pins; self-check only)');
 
 function read(path) {
   return readFileSync(join(root, path), 'utf8');

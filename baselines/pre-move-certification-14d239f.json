@@ -1,0 +1,32 @@
+{
+  "schema": "asha-rulebench-testing.pre-move-baseline",
+  "schemaVersion": 1,
+  "sourceRepository": "FuzzySlipper/asha-rulebench",
+  "sourceRevision": "14d239f9df441470b66e1abab33aa6f6b3bb1247",
+  "command": "pnpm run certify",
+  "state": "passed",
+  "capturedAt": "2026-07-17",
+  "semantic": {
+    "scenarioRegressions": 11,
+    "capabilityConformanceCases": 16,
+    "coveredCapabilities": 14
+  },
+  "browser": {
+    "deterministicTests": 23,
+    "state": "passed"
+  },
+  "inventory": {
+    "providers": 2,
+    "rulesets": 2,
+    "packages": 4,
+    "scenarios": 11,
+    "capabilities": 20,
+    "runtimeExecutableCapabilities": 20,
+    "regressionCoveredCapabilities": 19,
+    "activeLimitations": 2
+  },
+  "liveArtifacts": {
+    "state": "notRun",
+    "claim": false
+  }
+}

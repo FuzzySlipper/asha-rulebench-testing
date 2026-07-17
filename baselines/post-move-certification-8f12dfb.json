@@ -1,0 +1,36 @@
+{
+  "schema": "asha-rulebench-testing.post-move-comparison",
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-17",
+  "command": "npm run certify",
+  "state": "passed",
+  "revisions": {
+    "asha-rpg": "ea3e3803d4736268f2a10996a34bc5b8dfefcffc",
+    "asha-rulebench": "8f12dfb51542c0b61d257f6ce8d34b3573ad1019"
+  },
+  "suites": {
+    "governance": "passed",
+    "dependencyDirection": "passed",
+    "rustHarnessTests": 302,
+    "scenarioRegressions": 11,
+    "capabilityConformanceCases": 16,
+    "coveredCapabilities": 14,
+    "generatedProofArtifacts": 3,
+    "authoredContentVersions": 4,
+    "replayStorageVersions": 1,
+    "typescriptFixtureTests": 4,
+    "portableConsumer": "passed",
+    "downstreamBrowserTests": 15,
+    "retainedProductBrowserTests": 8,
+    "totalComparedBrowserTests": 23
+  },
+  "liveArtifacts": {
+    "state": "notRun",
+    "claim": false
+  },
+  "nonClaims": [
+    "The testing repository is not semantic authority.",
+    "Downstream certification is not an ordinary product per-change gate.",
+    "Deterministic browser process exit is not inspected managed LAN visual proof."
+  ]
+}

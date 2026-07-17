@@ -25,6 +25,7 @@ not become semantic authority and must not patch through private source paths.
 
 ```bash
 npm test
+npm run certify
 ```
 
 Do not call a planned or skipped suite passed. Use exact execution states and

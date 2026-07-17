@@ -6,6 +6,14 @@
   "description": "Downstream exhaustive conformance and certification for Asha RPG and Rulebench.",
   "scripts": {
     "check:governance": "node scripts/check-governance.mjs",
+    "check:generated": "node scripts/check-generated.mjs",
+    "check:product-direction": "node scripts/check-product-direction.mjs",
+    "test:semantic": "node scripts/run-semantic.mjs",
+    "test:compatibility": "cargo run --quiet -p rulebench-proof --bin check_compatibility",
+    "test:typescript": "node scripts/run-typescript-fixtures.mjs",
+    "test:portable": "node scripts/run-portable-consumer.mjs",
+    "test:browser": "node scripts/run-browser-suite.mjs",
+    "certify": "node scripts/certify.mjs",
     "test": "npm run check:governance"
   }
 }

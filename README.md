@@ -9,19 +9,25 @@ It is never a runtime dependency or an ordinary per-change gate of either
 product repository. Product repositories keep focused owner-local regressions
 and Rulebench keeps its primary visible user journeys.
 
-## Bootstrap status
-
-Task #5940 establishes governance and exact product pins. No proof corpus is
-claimed here yet. Task #5942 will first record the Rulebench pre-move baseline,
-then move and execute the selected exhaustive suites against pinned product
-revisions. Planned suite cells are explicitly marked `planned` in the ownership
-map.
-
-## Check
+## Commands
 
 ```bash
 npm test
+npm run test:semantic
+npm run test:compatibility
+npm run test:typescript
+npm run test:portable
+npm run test:browser
+npm run certify
 ```
 
-This bootstrap check validates repository direction, required governance, and
-full-SHA product pins. It is not certification.
+`npm test` validates this repository's own governance and exact pins. It is not
+certification. `npm run certify` executes every owned suite and writes an honest
+receipt under ignored `artifacts/receipts/`; any failed cell makes the command
+fail and remains recorded as failed.
+
+The committed pre-move Rulebench baseline is under `baselines/`. Generated
+scenario/session/capability proof artifacts are committed under
+`artifacts/generated/` and checked against the downstream Rust emitters.
+The exact pre/post comparison is documented in
+`docs/extraction-evidence.md`.

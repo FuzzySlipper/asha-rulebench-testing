@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = ["suites/rulebench-proof"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "UNLICENSED"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.dependencies]
+rulebench-combat = { git = "https://github.com/FuzzySlipper/asha-rulebench.git", rev = "8f12dfb51542c0b61d257f6ce8d34b3573ad1019", version = "^0.1" }
+rulebench-bridge = { git = "https://github.com/FuzzySlipper/asha-rulebench.git", rev = "8f12dfb51542c0b61d257f6ce8d34b3573ad1019", version = "^0.1" }
+rulebench-content = { git = "https://github.com/FuzzySlipper/asha-rulebench.git", rev = "8f12dfb51542c0b61d257f6ce8d34b3573ad1019", version = "^0.1" }
+rulebench-product-content = { git = "https://github.com/FuzzySlipper/asha-rulebench.git", rev = "8f12dfb51542c0b61d257f6ce8d34b3573ad1019", version = "^0.1" }
+rulebench-process-host = { git = "https://github.com/FuzzySlipper/asha-rulebench.git", rev = "8f12dfb51542c0b61d257f6ce8d34b3573ad1019", version = "^0.1" }
+rulebench-protocol = { git = "https://github.com/FuzzySlipper/asha-rulebench.git", rev = "8f12dfb51542c0b61d257f6ce8d34b3573ad1019", version = "^0.1" }
+rulebench-replay = { git = "https://github.com/FuzzySlipper/asha-rulebench.git", rev = "8f12dfb51542c0b61d257f6ce8d34b3573ad1019", version = "^0.1" }
+rpg-core = { git = "https://github.com/FuzzySlipper/asha-rpg.git", rev = "ea3e3803d4736268f2a10996a34bc5b8dfefcffc", version = "^0.1" }
+rpg-ir = { git = "https://github.com/FuzzySlipper/asha-rpg.git", rev = "ea3e3803d4736268f2a10996a34bc5b8dfefcffc", version = "^0.1" }
