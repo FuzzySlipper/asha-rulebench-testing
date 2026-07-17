@@ -3,11 +3,11 @@
   "products": {
     "asha-rpg": {
       "repository": "FuzzySlipper/asha-rpg",
-      "revision": "c6eeb8f86f393d1a08331ded7052026c077560ad"
+      "revision": "7d6430bb3fb9809a6d35636275ef2e3e36ae9407"
     },
     "asha-rulebench": {
       "repository": "FuzzySlipper/asha-rulebench",
-      "revision": "455ef6abb8b289e87cbd709a68f14c348012cf2b"
+      "revision": "ffa4e38aac6941dfc38a8f899ac779dba14e6f76"
     }
   }
 }
