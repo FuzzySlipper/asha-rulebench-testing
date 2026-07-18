@@ -1,33 +1,21 @@
 # asha-rulebench-testing
 
-`asha-rulebench-testing` is the downstream exhaustive proof consumer for
-`asha-rpg` and `asha-rulebench`. It owns cross-repository conformance,
-compatibility, replay/golden matrices, unseen-content certification, exhaustive
-browser/live-host journeys, and milestone/release receipts.
+`asha-rulebench-testing` is the downstream home for future exhaustive,
+cross-repository evidence over pinned public Asha RPG and Rulebench revisions.
 
-It is never a runtime dependency or an ordinary per-change gate of either
-product repository. Product repositories keep focused owner-local regressions
-and Rulebench keeps its primary visible user journeys.
+The old prototype corpus, generated proof artifacts, compatibility/replay
+fixtures, baselines, product pins, certification runner, and scheduled workflow
+were removed under Rulebench task #5952. Preserving them would keep deleted
+content architecturally authoritative.
 
-## Commands
+The repository is intentionally between suites. It does not report an empty
+certification as passed. Fresh certification work begins only after #5953 and
+#5955 expose the explicit compiled-artifact and persistent-authority contracts.
 
 ```bash
 npm test
-npm run test:semantic
-npm run test:compatibility
-npm run test:typescript
-npm run test:portable
-npm run test:browser
-npm run certify
 ```
 
-`npm test` validates this repository's own governance and exact pins. It is not
-certification. `npm run certify` executes every owned suite and writes an honest
-receipt under ignored `artifacts/receipts/`; any failed cell makes the command
-fail and remains recorded as failed.
-
-The committed pre-move Rulebench baseline is under `baselines/`. Generated
-scenario/session/capability proof artifacts are committed under
-`artifacts/generated/` and checked against the downstream Rust emitters.
-The exact pre/post comparison is documented in
-`docs/extraction-evidence.md`.
+`npm test` validates this repository's dependency-direction and empty-harness
+governance. It is not semantic, compatibility, browser, replay, or milestone
+certification.

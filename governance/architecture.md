@@ -1,14 +1,6 @@
 # Governance architecture
 
-The canonical architecture is `docs/design.md`. Planned suite cells are
-independent downstream consumers over exact public product revisions:
-
-```text
-semantic | replay | compatibility | browser-live | certification
-                         |
-                         v
-                receipt and failure routing
-```
-
-The harness may share orchestration and receipt vocabulary. It may not share or
-reimplement product authority.
+The canonical architecture is `docs/design.md`. The repository currently owns
+only its self-governance check. Future certification must consume exact public
+compiled-artifact/runtime contracts without importing private product sources
+or recreating semantic authority.

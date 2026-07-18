@@ -2,37 +2,7 @@
 lane = "testing-governance"
 implementation_status = "active"
 
-[suite."suites/rulebench-proof"]
-lane = "semantic-conformance"
-implementation_status = "active"
-consumes = ["asha-rpg", "asha-rulebench"]
-
-[suite."suites/compatibility/fixtures/replay-storage-v1.json"]
-lane = "replay-compatibility"
-implementation_status = "active"
-consumes = ["asha-rpg", "asha-rulebench"]
-
-[suite."suites/compatibility/fixtures"]
-lane = "cross-version-conformance"
-implementation_status = "active"
-consumes = ["asha-rpg", "asha-rulebench"]
-
-[suite."suites/browser"]
-lane = "product-certification"
-implementation_status = "active"
-consumes = ["asha-rulebench"]
-
-[suite."scripts/certify.mjs"]
-lane = "certification"
-implementation_status = "active"
-consumes = ["asha-rpg", "asha-rulebench"]
-
-[suite."suites/typescript-fixtures"]
-lane = "typescript-fixture-conformance"
-implementation_status = "active"
-consumes = ["asha-rulebench"]
-
-[suite."scripts/run-portable-consumer.mjs"]
-lane = "portable-consumer"
-implementation_status = "active"
-consumes = ["asha-rpg"]
+[future]
+compiled_artifact_consumer = "asha-rulebench#5953"
+persistent_authority_consumer = "asha-rulebench#5955"
+implementation_status = "absent"

@@ -1,14 +1,10 @@
-# Failure routing
+# Failure Routing
 
-Route failures by the first public contract that is wrong:
+When fresh downstream suites are introduced:
 
-| Failure | Owner |
-| --- | --- |
-| RPG IR decode, semantic validation, authority event/state, SDK normalization | `asha-rpg` |
-| Rulebench protocol, host, storage, migration, product workflow, UI mapping | `asha-rulebench` |
-| Harness orchestration, pin resolution, fixture expectation, receipt generation | `asha-rulebench-testing` |
-| Missing or broken public ASHA surface | upstream `asha-engine` task |
+- Asha RPG compiler/runtime failures route to `asha-rpg`.
+- Rulebench artifact-selection, transport, or UI failures route to
+  `asha-rulebench`.
+- Harness, pinning, receipt, or matrix failures route here.
 
-A testing failure must include exact revisions, the smallest reproducing command,
-the observed public input/output, and the suspected owner. Do not tunnel into
-private source or patch a product through a test-only adapter.
+No active suite currently produces certification failures.

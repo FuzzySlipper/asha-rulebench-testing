@@ -1,8 +1,6 @@
 node_modules/
 dist/
 local/
-target/
 .cache/
-artifacts/receipts/
 test-results/
 playwright-report/
